@@ -19,7 +19,7 @@
     align-items: center;
   }
   .registration-form .card .error {
-    color: var(--bright-red);
+    color: red;
   }
   .registration-form .card h2 {
     font-size: 42px;
