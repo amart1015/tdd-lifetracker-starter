@@ -3,6 +3,7 @@ import Navbar from "./Navbar/Navbar"
 import LandingPage from "./LandingPage/LandingPage"
 import LoginPage from "./LoginPage/LoginPage"
 import RegistrationPage from "./RegistrationPage/RegistrationPage"
+import NotFound from "./NotFound/NotFound"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -20,8 +21,8 @@ export default function App() {
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/register" element={<RegistrationPage/>}/>
           {/* <Route path="/activity" element={<ActivityPage/>}/>
-          <Route path="/nutrition/*" element={<NutritionPage/>}/>
-          <Route path="*" element={<NotFound/>}/> */}
+          <Route path="/nutrition/*" element={<NutritionPage/>}/> */}
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
 
         </BrowserRouter>
