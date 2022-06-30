@@ -1,9 +1,14 @@
 import * as React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react"
+import axios from "axios"
 import "./NavLinks.css"
 import { Link } from "react-router-dom";
 
-export default function NavLinks() {
+export default function NavLinks({loggedIn,setLoggedIn}) {
+    const handleLinkClick=event=>{
+        setLoggedIn(false);
+    }
   return (
     <ul className="links">
         <li>
@@ -18,12 +23,14 @@ export default function NavLinks() {
         <li>
             <Link to="/sleep">Sleep</Link>
         </li>
-        <li>
+        {loggedIn ? <li>
+            <Link onClick={handleLinkClick} to="/">Logout</Link>
+        </li>:<li>
             <Link to="/login">Login</Link>
-        </li>
-        <li className="btn secondary">
+        </li>}
+        {!loggedIn && <li className="btn secondary">
             <Link to="/register">Sign Up</Link>
-        </li>
+        </li>}
     </ul>
   )
 }

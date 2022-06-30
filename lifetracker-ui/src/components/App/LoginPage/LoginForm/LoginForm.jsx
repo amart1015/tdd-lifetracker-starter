@@ -1,16 +1,41 @@
 import * as React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react"
+import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 import "./LoginForm.css"
 
-export default function LoginForm() {
+export default function LoginForm({setLoggedIn}) {
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState({})
   const [form, setForm] = useState({
     email: "",
     password: "",
   })
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setErrors((e) => ({ ...e, form: null }))
+
+    try {
+      const res = await axios.post(`http://localhost:3001/auth/login`, form)
+      if (res?.data) {
+        setIsLoading(false)
+        setLoggedIn(true)
+        navigate("/activity")
+      } else {
+        setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
+        setIsLoading(false)
+      }
+    } catch (err) {
+      console.log(err)
+      const message = err?.response?.data?.error?.message
+      setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
+      setIsLoading(false)
+    }
+  }
 
   const handleOnInputChange = (event) => {
     if (event.target.name === "email") {
@@ -27,6 +52,7 @@ export default function LoginForm() {
     <div className="login-form">
       <div className="card">
         <h2>Login</h2>
+        {errors.form && <span className="error">{errors.form}</span>}
             <div className="form-input">
                 <div className="input-field">
                     <label>Email</label>
@@ -37,7 +63,7 @@ export default function LoginForm() {
                     <label>Password</label>
                     <input type="password" name="password" placeholder="password" value={form.password} onChange={handleOnInputChange}/>
                 </div>
-                <button className="btn">Login</button>
+                <button className="btn" onClick={handleOnSubmit}>Login</button>
             <div className="footer">
                 <p>Don't have an account? Sign up <a href="/register">here.</a></p>
             </div>
