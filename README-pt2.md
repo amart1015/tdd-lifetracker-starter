@@ -8,7 +8,7 @@ Submitted by: **Anthony Martin**
 
 Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
 
-Youtube Video showing website functionality[lifetracker](https://youtu.be/8fPa8pMiDM8)
+Youtube Video showing website functionality: [Lifetracker](https://youtu.be/8fPa8pMiDM8)
 
 
 ## Application Features
