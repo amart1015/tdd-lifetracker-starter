@@ -10,7 +10,8 @@ class User{
             email:user.email,
             first_name:user.first_name,
             last_name:user.last_name,
-            user_name:user.user_name
+            user_name:user.user_name,
+            created_at:user.created_at
 
         }
     }
@@ -88,7 +89,7 @@ class User{
             user_name
         )
         VALUES ($1, $2, $3, $4, $5)
-        RETURNING id, email, password, first_name, last_name, user_name;
+        RETURNING id, email, password, first_name, last_name, user_name,created_at;
     `,
     [lowercasedEmail, hashedPassword, credentials.firstName, credentials.lastName, credentials.userName]
     )

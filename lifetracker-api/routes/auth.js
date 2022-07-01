@@ -3,6 +3,7 @@ const {createUserJwt}=require("../utils/tokens")
 const security=require("../middleware/security")
 const router=express.Router();
 const User = require("../models/user")
+const Nutrition = require("../models/nutrition")
 
 router.post("/login", async(req,res,next)=>{
     try{

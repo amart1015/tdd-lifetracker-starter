@@ -5,6 +5,9 @@ import LoginPage from "./LoginPage/LoginPage"
 import RegistrationPage from "./RegistrationPage/RegistrationPage"
 import NotFound from "./NotFound/NotFound"
 import ActivityPage from "./ActivityPage/ActivityPage"
+import NutritionPage from "./NutritionPage/NutritionPage"
+import ExercisePage from "./ExercisePage/ExercisePage"
+import SleepPage from "./SleepPage/SleepPage"
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -24,7 +27,9 @@ export default function App() {
           <Route path="/login" element={<LoginPage setAppState={setAppState} setLoggedIn={setLoggedIn}/>}/>
           <Route path="/register" element={<RegistrationPage setAppState={setAppState} setLoggedIn={setLoggedIn}/>}/>
           <Route path="/activity" element={<ActivityPage loggedIn={loggedIn}/>}/>
-          {/* <Route path="/nutrition/*" element={<NutritionPage/>}/> */}
+          <Route path="/nutrition/*" element={<NutritionPage loggedIn={loggedIn}/>}/>
+          <Route path="/exercise/*" element={<ExercisePage loggedIn={loggedIn}/>}/>
+          <Route path="/sleep/*" element={<SleepPage loggedIn={loggedIn}/>}/>
           <Route path="*" element={<NotFound/>}/>
         </Routes>
 
