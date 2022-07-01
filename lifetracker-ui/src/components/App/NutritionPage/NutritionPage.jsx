@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom"
 import "./NutritionPage.css"
 import NutritionOverview from "./NutritionOverview/NutritionOverview"
 import NutritionNew from "./NutritionNew/NutritionNew";
-import NutritionDetail from "./NutritionDetail/NutritionDetail";
+// import NutritionDetail from "./NutritionDetail/NutritionDetail";
 
 export default function NutritionPage({loggedIn}) {
     const navigate = useNavigate()
