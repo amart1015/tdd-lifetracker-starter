@@ -1,4 +1,4 @@
-.NutritionPage {
+.ExercisePage {
     width: 100%;
     max-width: 100vw;
     display: flex;
@@ -6,7 +6,7 @@
     overflow-x: hidden;
     background: var(--dark-background);
   }
-  .NutritionPage .content {
+  .ExercisePage .content {
     width: 100%;
     margin: 0 auto;
     display: flex;

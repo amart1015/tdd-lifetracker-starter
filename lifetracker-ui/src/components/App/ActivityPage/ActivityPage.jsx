@@ -18,7 +18,7 @@ export default function ActivityPage({loggedIn}) {
    <div className="content">
       <div className="actions">
          <h2 className="heading">Activity Feed</h2>
-         <div className="buttons"><button className="Button outline small outline gold ">Add Exercise</button><button className="Button outline small outline blue ">Log Sleep</button><button className="Button outline small outline aqua ">Record Nutrition</button></div>
+         <div className="buttons"><button className="Button outline small outline gold "><Link to="/exercise/create">Add Exercise</Link></button><button className="Button outline small outline blue "><Link to="/sleep/create">Log Sleep</Link></button><button className="Button outline small outline aqua "><Link to="/nutrition/create">Record Nutrition</Link></button></div>
       </div>
       <div className="stats">
          <div className="main">
