@@ -6,7 +6,7 @@ Submitted by: **Anthony Martin**
 
 
 
-Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
+Deployed Application: [Lifetracker Deployed Site]
 
 
 ## Application Features
