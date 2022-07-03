@@ -43,7 +43,7 @@ Implement any of the following features to improve the application:
 
 ### Walkthrough Video
 
-Youtube Video showing website functionality: [Lifetracker](https://www.loom.com/share/967d10978c004deaab59337bb2fa1771)
+Loom Video showing website functionality: [Lifetracker](https://www.loom.com/share/967d10978c004deaab59337bb2fa1771)
 
 ### Reflection
 
