@@ -6,7 +6,7 @@ Submitted by: **Anthony Martin**
 
 
 
-Deployed Application: [Lifetracker Deployed Site]
+Deployed Application: [Lifetracker Deployed Site](https://idiotic-way.surge.sh/)
 
 
 ## Application Features
@@ -27,23 +27,25 @@ Deployed Application: [Lifetracker Deployed Site]
 - [x] Deployed website with Heroku & Surge. 
 
 **Detailed Activity Page:**
-- [ ] The detailed activity page should display a feed of all previous tracked activities.
-- [ ] The detailed activity should contain a form to contain relevant information. (i.e if tracking nutrition this form allows the user to capture calories, timestamp, image, category, etc.) 
-- [ ] The activity tracked should be given a unique id for easy lookup.
+- [x] The detailed activity page should display a feed of all previous tracked activities.
+- [x] The detailed activity should contain a form to contain relevant information. (i.e if tracking nutrition this form allows the user to capture calories, timestamp, image, category, etc.) 
+- [x] The activity tracked should be given a unique id for easy lookup.
   `TODO://` Add link to table schema in the link code below. Your file should end in `.sql` and show your schema for the detailed activities table. (🚫 Remove this paragraph after adding schema link)
-  * [Table Schema](📝ADD LINK TO TABLE SCHEMA.sql HERE!) 
+  * [Table Schema](https://github.com/amart1015/tdd-lifetracker-starter/blob/main/lifetracker-api/lifetracker-schema.sql) 
 
 ### Stretch Features
 
 Implement any of the following features to improve the application:
-- [ ] Each model (`nutrition`, `exercise`, and `sleep`) should also implement a `fetchById` method that queries the database for a record by its id and only serves it to users who own that resource. Create a new dynamic route on the frontend that displays detail about a single record. For instance, `nutrition/detail/:id` should show a page with all the information about a single nutrition item.
+- [x] Each model (`nutrition`, `exercise`, and `sleep`) should also implement a `fetchById` method that queries the database for a record by its id and only serves it to users who own that resource. Create a new dynamic route on the frontend that displays detail about a single record. For instance, `nutrition/detail/:id` should show a page with all the information about a single nutrition item.
 - [ ] Provide a dropdown that allows users to filter activity based on a certain attribute of any activity item.
 - [ ] Calculate aggregate statistics based on time periods - such as daily, weekly, monthly aggregates.
 - [ ] Create a page that shows all other users that use the life tracker application and allow users to follow each other.
 
 ### Walkthrough Video
 
-Loom Video showing website functionality: [Lifetracker](https://www.loom.com/share/967d10978c004deaab59337bb2fa1771)
+Loom Video showing website functionality Week 4: [Lifetracker](https://www.loom.com/share/967d10978c004deaab59337bb2fa1771)
+
+Loom Video showing website functionality Week 5: [Lifetracker](https://www.loom.com/share/07db67372b2f43c282838bf0be68bb88)
 
 ### Reflection
 
