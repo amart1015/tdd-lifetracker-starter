@@ -4,12 +4,12 @@ import Logo from "./Logo/Logo"
 import NavLinks from "./NavLinks/NavLinks"
 import "./Navbar.css"
 
-export default function Navbar({loggedIn,setLoggedIn}) {
+export default function Navbar({loggedIn,setLoggedIn, handleLogout}) {
   return (
     <nav className="Navbar">
         <div className="content">
             <Logo/>
-            <NavLinks loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+            <NavLinks loggedIn={loggedIn} setLoggedIn={setLoggedIn} handleLogout={handleLogout}/>
         </div>
         </nav>
   )

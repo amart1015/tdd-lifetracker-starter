@@ -1,14 +1,12 @@
 import * as React from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react"
-import axios from "axios"
 import "./NavLinks.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"
+import { useAuthContext } from "../../../../contexts/auth"
 
-export default function NavLinks({loggedIn,setLoggedIn}) {
-    const handleLinkClick=event=>{
-        setLoggedIn(false);
-    }
+export default function NavLinks({loggedIn,setLoggedIn, handleLogout}) {
+    const navigate = useNavigate()
+    const {user} = useAuthContext()
+
   return (
     <ul className="links">
         <li>
@@ -24,7 +22,7 @@ export default function NavLinks({loggedIn,setLoggedIn}) {
             <Link to="/sleep">Sleep</Link>
         </li>
         {loggedIn ? <li>
-            <Link onClick={handleLinkClick} to="/">Logout</Link>
+            <Link onClick={handleLogout} to="/">Logout</Link>
         </li>:<li>
             <Link to="/login">Login</Link>
         </li>}

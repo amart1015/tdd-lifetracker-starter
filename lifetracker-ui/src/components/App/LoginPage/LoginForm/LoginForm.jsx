@@ -1,41 +1,47 @@
 import * as React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useNavigate, Link, useLocation } from "react-router-dom"
+import { useAuthContext } from "../../../../contexts/auth"
+import ApiClient from "../../../../services/apiClient"
 import axios from "axios"
 import "./LoginForm.css"
 
 export default function LoginForm({setLoggedIn}) {
   const navigate = useNavigate()
+  const location= useLocation()
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState({})
+  const {user, setUser, error, setError} = useAuthContext()
   const [form, setForm] = useState({
     email: "",
     password: "",
   })
+  const link = location?.state?.link ? location?.state?.link : "/activity"
+
+  React.useEffect(() => {
+    if (user?.email) {
+        navigate(link)
+        setLoggedIn(true)
+    }
+}, [user, navigate])
 
   const handleOnSubmit = async (e) => {
     e.preventDefault()
-    setIsLoading(true)
     setErrors((e) => ({ ...e, form: null }))
 
-    try {
-      const res = await axios.post(`http://localhost:3001/auth/login`, form)
-      if (res?.data) {
-        setIsLoading(false)
-        setLoggedIn(true)
-        navigate("/activity")
-      } else {
-        setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
-        setIsLoading(false)
-      }
-    } catch (err) {
-      console.log(err)
-      const message = err?.response?.data?.error?.message
-      setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
-      setIsLoading(false)
+    const {data, error} = await ApiClient.loginUser({
+        email: form.email,
+        password: form.password,
+    })
+    
+    if (error) setError((e) => ({ ...e, form: error }))
+
+    if (data?.user) {
+        ApiClient.setToken(data.token)
+        setUser(data.user)
     }
-  }
+}
 
   const handleOnInputChange = (event) => {
     if (event.target.name === "email") {

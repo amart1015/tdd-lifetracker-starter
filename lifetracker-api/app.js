@@ -3,6 +3,9 @@ const {BadRequestError, NotFoundError} = require("./utils/errors")
 const security=require("./middleware/security")
 const authRoutes = require("./routes/auth")
 const nutritRoutes = require("./routes/nutrition")
+const exercisRoutes = require("./routes/exercise")
+const sleepRoutes = require("./routes/sleep")
+//hey
 
 const morgan = require("morgan")
 const cors = require("cors")
@@ -17,6 +20,8 @@ app.use(security.extractUserFromJwt)
 
 app.use("/auth", authRoutes)
 app.use("/nutrition", nutritRoutes)
+app.use("/exercise", exercisRoutes)
+app.use("/sleep", sleepRoutes)
 
 app.get("/",(req, res, next) => {
     res.status(200).json({"ping":"pong"})

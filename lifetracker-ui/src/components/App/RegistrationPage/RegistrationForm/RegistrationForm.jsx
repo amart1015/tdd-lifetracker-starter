@@ -2,6 +2,8 @@ import * as React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
+import ApiClient from "../../../../services/apiClient"
+import { useAuthContext } from "../../../../contexts/auth"
 import axios from "axios"
 import "./RegistrationForm.css"
 
@@ -9,6 +11,7 @@ export default function RegistrationForm({setAppState,setLoggedIn}) {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState({})
+    const {user, setUser, error, setError} = useAuthContext()
     const [form, setForm] = useState({
         firstName: "",
         lastName: "",
@@ -17,6 +20,12 @@ export default function RegistrationForm({setAppState,setLoggedIn}) {
         passwordConfirm: "",
         userName:"",
     })
+    React.useEffect(() => {
+      if (user?.email) {
+          navigate("/activity")
+          setLoggedIn(true)
+      }
+  }, [user, navigate])
 
     const handleOnInputChange = (event) => {
         if (event.target.name === "password") {
@@ -44,7 +53,7 @@ export default function RegistrationForm({setAppState,setLoggedIn}) {
         setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
       }
 
-      const handleOnSubmit = async () => {
+      const handleOnSubmit = async (e) => {
         setIsLoading(true)
         setErrors((e) => ({ ...e, form: null }))
     
@@ -55,30 +64,20 @@ export default function RegistrationForm({setAppState,setLoggedIn}) {
         } else {
           setErrors((e) => ({ ...e, passwordConfirm: null }))
         }
-    
-        try {
-          const res = await axios.post("http://localhost:3001/auth/register", {
-            firstName: form.firstName,
-            lastName: form.lastName,
-            email: form.email,
-            password: form.password,
-            userName:form.userName
-          })
-    
-          if (res?.data?.user) {
-            setIsLoading(false)
-            setLoggedIn(true)
-            navigate("/activity")
-          } else {
-            setErrors((e) => ({ ...e, form: "Something went wrong with registration" }))
-            setIsLoading(false)
-          }
-        } catch (err) {
-          const message = err?.response?.data?.error?.message
-          console.log(err.message);
-          setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
-          setIsLoading(false)
-        }
+        const {data,error} = await ApiClient.signupUser( {
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          password: form.password,
+          userName:form.userName
+        })
+
+        if (error) setErrors((e) => ({ ...e, form: error }))
+
+        if (data?.user) {
+          ApiClient.setToken(data.token)
+          setUser(data.user)
+      }
       }
 
 
@@ -89,14 +88,14 @@ export default function RegistrationForm({setAppState,setLoggedIn}) {
                 {errors.form && <span className="error">{errors.form}</span>}
                 <div className="form-input">
                     <div className="input-field">
-                        <label for="email">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input type="email" name="email" placeholder="Enter a valid email" value={form.email} onChange={handleOnInputChange}/>
                         {(errors.email !== null && form.email !== "") ? <span className="error">Please enter a valid email.</span> : null}
 
 
                     </div>
                     <div className="input-field">
-                        <label for="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <input type="text" name="userName" placeholder="your_username" value={form.userName} onChange={handleOnInputChange}/>
                     </div>
                     <div className="split-input-field">
@@ -108,11 +107,11 @@ export default function RegistrationForm({setAppState,setLoggedIn}) {
                         </div>
                     </div>
                     <div className="input-field">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input type="password" name="password" placeholder="Enter a secure password" value={form.password} onChange={handleOnInputChange}/>
                     </div>
                     <div className="input-field">
-                        <label for="passwordConfirm">Confirm Password</label>
+                        <label htmlFor="passwordConfirm">Confirm Password</label>
                         <input type="password" name="passwordConfirm" placeholder="Confirm your password" value={form.passwordConfirm} onChange={handleOnInputChange}/>
                         {(errors.passwordConfirm !== null && form.passwordConfirm !== "") ? <span className="error">Password's do not match</span> : null}
                     </div>

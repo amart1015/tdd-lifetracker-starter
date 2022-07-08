@@ -25,7 +25,7 @@ export default function ActivityPage({loggedIn}) {
             <div className="SummaryStat large gold">
                <div className="background">
                   <p>Total Exercise Minutes</p>
-                  <h1>0</h1>
+                  <h1>60</h1>
                   {/* <svg height="100%" width="100%" viewBox="0 0 220 360" style="position: absolute; left: -122px; bottom: -122px; right: 0px; transform: rotate(180deg); transform-origin: center center;">
                      <path fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.15)"></path>
                   </svg> */}
@@ -34,7 +34,7 @@ export default function ActivityPage({loggedIn}) {
             <div className="SummaryStat large purple">
                <div className="background">
                   <p>Avg Sleep Hours</p>
-                  <h1>0</h1>
+                  <h1>13</h1>
                   {/* <svg height="100%" width="100%" viewBox="0 0 220 360" style="position: absolute; left: -122px; bottom: -122px; right: 0px; transform: rotate(180deg); transform-origin: center center;">
                      <path fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.15)"></path>
                   </svg> */}
@@ -43,37 +43,7 @@ export default function ActivityPage({loggedIn}) {
             <div className="SummaryStat large aqua">
                <div className="background">
                   <p>Avg Daily Calories</p>
-                  <h1>0</h1>
-                  {/* <svg height="100%" width="100%" viewBox="0 0 220 360" style="position: absolute; left: -122px; bottom: -122px; right: 0px; transform: rotate(180deg); transform-origin: center center;">
-                     <path fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.15)"></path>
-                  </svg> */}
-               </div>
-            </div>
-         </div>
-         <h4>More Stats</h4>
-         <div className="more">
-            <div className="SummaryStat small teal">
-               <div className="background">
-                  <p>Maximum Hourly Calories</p>
-                  <h1>0</h1>
-                  {/* <svg height="100%" width="100%" viewBox="0 0 220 360" style="position: absolute; left: -122px; bottom: -122px; right: 0px; transform: rotate(180deg); transform-origin: center center;">
-                     <path fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.15)"></path>
-                  </svg> */}
-               </div>
-            </div>
-            <div className="SummaryStat small orange">
-               <div className="background">
-                  <p>Avg Exercise Intensity</p>
-                  <h1>0</h1>
-                  {/* <svg height="100%" width="100%" viewBox="0 0 220 360" style="position: absolute; left: -122px; bottom: -122px; right: 0px; transform: rotate(180deg); transform-origin: center center;">
-                     <path fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.15)"></path>
-                  </svg> */}
-               </div>
-            </div>
-            <div className="SummaryStat small red">
-               <div className="background">
-                  <p>Total Hours Slept</p>
-                  <h1>0</h1>
+                  <h1>500</h1>
                   {/* <svg height="100%" width="100%" viewBox="0 0 220 360" style="position: absolute; left: -122px; bottom: -122px; right: 0px; transform: rotate(180deg); transform-origin: center center;">
                      <path fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.15)"></path>
                   </svg> */}

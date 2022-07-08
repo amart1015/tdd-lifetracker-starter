@@ -3,21 +3,21 @@ const bcrypt = require("bcrypt")
 const {BCRYPT_WORK_FACTOR} = require("../config")
 const {BadRequestError,UnauthorizedError } = require("../utils/errors");
 
-class Nutrition{
-    static async showNutrition(nutrition){
+class Exercise{
+    static async showExercise(exercise){
         return{
-            id:nutrition.id,
-            name:nutrition.name,
-            created_at:nutrition.created_at
+            id:exercise.id,
+            name:exercise.name,
+            created_at:exercise.created_at
 
         }
     }
-    static async createNutrition(nutritionfact){
+    static async createExercise(exercisefact){
         //user should submit their email and password
         //if any of these fields are missing, throw an error
-        const requiredFields=["name","category","calories","image_url", "user_id", "quantity"]
+        const requiredFields=["name","category","duration","intensity", "user_id"]
         requiredFields.forEach(field =>{
-            if(!nutritionfact.hasOwnProperty(field)){
+            if(!exercisefact.hasOwnProperty(field)){
                 throw new BadRequestError(`Missing ${field} in request body.`)
             }
         })
@@ -29,18 +29,17 @@ class Nutrition{
 
         //create a new user in the db with all their info
         const result = await db.query(`
-        INSERT INTO nutrition (
+        INSERT INTO exercise (
             name,
             category,
-            calories,
-            image_url,
-            user_id,
-            quantity
+            duration,
+            intensity,
+            user_id
         )
-        VALUES ($1, $2, $3, $4, $5, $6)
-        RETURNING id, name, category, calories, image_url, user_id,created_at, quantity;
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING id, name, category, duration, intensity, user_id,created_at;
     `,
-    [nutritionfact.name, nutritionfact.category, nutritionfact.calories,nutritionfact.image_url, nutritionfact.user_id, nutritionfact.quantity]
+    [exercisefact.name, exercisefact.category, exercisefact.duration,exercisefact.intensity, exercisefact.user_id]
     )
 
         //return the user
@@ -51,23 +50,23 @@ class Nutrition{
 
     }
 
-    static async fetchNutritionById(id) {
+    static async fetchExerciseById(id) {
         
         if (!id) {
             throw new BadRequestError(`Missing ${field} in request body.`)
         } 
         
-        const result = await db.query("SELECT * FROM nutrition WHERE id = $1;", [id])
+        const result = await db.query("SELECT * FROM exercise WHERE id = $1;", [id])
     
         return result.rows[0]
     }
 
-    static async fetchAllNutritionsByUserId(user_id) {
+    static async fetchAllExerciseByUserId(user_id) {
         if (!user_id) {
             throw new BadRequestError("No user_id provided")
         }
 
-        const query = `SELECT * FROM nutrition WHERE user_id = $1`
+        const query = `SELECT * FROM exercise WHERE user_id = $1`
 
         const results = await db.query(query, [user_id])
         console.log(results.rows)
@@ -75,4 +74,4 @@ class Nutrition{
     }
 }
 
-module.exports=Nutrition
+module.exports=Exercise
